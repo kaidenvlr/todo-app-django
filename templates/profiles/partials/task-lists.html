@@ -1,0 +1,15 @@
+<div class="col-sm-3">
+    <div class="tab-pane" id="tab-todo">
+        <a href="{% url 'create-list' %}" align="right">Создать новый список</a>
+        <ul class="widget-todo">
+            {% for item in lists %}
+                <li class="item">
+                    <span style="color: {{ item.color }}; font-weight: bold; font-size: 32px">|</span>
+                    <a class="item__link" href="#id={{ item.pk }}">
+                        {{ item.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
