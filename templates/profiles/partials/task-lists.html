@@ -6,9 +6,10 @@
             {% for item in lists %}
                 <li class="item">
                     <span style="color: {{ item.color }}; font-weight: bold; font-size: 32px">|</span>
-                    <a class="item__link" href="#id={{ item.pk }}">
+                    <a class="item__link" href="{% url 'list' pk=item.pk %}">
                         {{ item.name }}
                     </a>
+                    <a href="{% url 'edit-list' pk=item.pk %}"><i class="fa-pencil-square-o" aria-hidden="true"></i></a>
                 </li>
             {% endfor %}
         </ul>
