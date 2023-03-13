@@ -23,7 +23,8 @@ class RegisterUserForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2')
 
 
-class ListCreateForm(forms.ModelForm):
+class TaskListForm(forms.ModelForm):
     class Meta:
         model = ProfileCategory
         fields = ('name', 'color')
+
