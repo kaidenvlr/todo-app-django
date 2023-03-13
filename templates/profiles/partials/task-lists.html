@@ -1,5 +1,6 @@
 <div class="col-sm-3">
     <div class="tab-pane" id="tab-todo">
+    {% if request.user.is_authenticated %}
         <a href="{% url 'create-list' %}" align="right">Создать новый список</a>
         <ul class="widget-todo">
             {% for item in lists %}
@@ -11,5 +12,6 @@
                 </li>
             {% endfor %}
         </ul>
+    {% endif %}
     </div>
 </div>
