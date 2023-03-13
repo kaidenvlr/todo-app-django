@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include "profiles/partials/task-lists.html" %}
+    {{ task_list.name }}
+    <a href="{% url 'create-task' pk=task_list.pk %}">Добавить задачу</a>
+    <ul class="widget-todo">
+        {% for item in tasks %}
+            <li class="item">
+                <div class="item__card">
+                    <p>Название: {{ item.name }}</p>
+                    <p>Уровень: {{ item.level.name }}</p>
+                    <p>Завершен? {{ item.is_done }}</p>
+                    <p>Дата создания {{ item.created_at }}</p>
+                    <p>Дата обновления {{ item.updated_at }}</p>
+                    <a href="#" class="btn btn-success">Пометить как завершенное</a>
+                    <a href="#" class="btn btn-danger">Удалить</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
