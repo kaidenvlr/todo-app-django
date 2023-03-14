@@ -82,9 +82,13 @@ def edit_list_view(request, pk):
 
 
 def list_view(request, pk):
+    if not request.user.is_authenticated:
+        return render(request, "index.html")
+    profile = User.objects.get(username=request.user.username)
+    profile_lists = ProfileCategory.objects.filter(profile=profile)
     task_list = get_object_or_404(ProfileCategory, pk=pk)
     tasks = Task.objects.filter(task_list=task_list)
-    return render(request, 'tasks/task-list.html', {'task_list': task_list, 'tasks': tasks})
+    return render(request, 'tasks/task-list.html', {'task_list': task_list, 'tasks': tasks, 'lists': profile_lists})
 
 
 def create_task_view(request, pk):
