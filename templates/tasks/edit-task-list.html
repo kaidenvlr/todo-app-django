@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
     {% include "profiles/partials/task-lists.html" %}
+    {% load crispy_forms_tags %}
     <h1>Новый список заданий</h1>
     <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <input type="submit" value="Создать список" class="btn btn-success"/>
     </form>
 {% endblock %}
