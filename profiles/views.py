@@ -99,3 +99,9 @@ def create_task_view(request, pk):
     else:
         form = TaskForm()
     return render(request, 'tasks/create-task.html', {'form': form})
+
+
+def delete_task_list_view(request, pk):
+    task_list = get_object_or_404(ProfileCategory, pk=pk)
+    task_list.delete()
+    return redirect('home')
