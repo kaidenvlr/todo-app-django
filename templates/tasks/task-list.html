@@ -12,8 +12,12 @@
                     <p>Завершен? {{ item.is_done }}</p>
                     <p>Дата создания {{ item.created_at }}</p>
                     <p>Дата обновления {{ item.updated_at }}</p>
-                    <a href="#" class="btn btn-success">Пометить как завершенное</a>
-                    <a href="#" class="btn btn-danger">Удалить</a>
+                    {% if item.is_done %}
+                    <a href="{% url 'incomplete-task' pk=task_list.pk task_id=item.pk %}" class="btn btn-success">Пометить как незавершенное</a>
+                    {% else %}
+                    <a href="{% url 'complete-task' pk=task_list.pk task_id=item.pk %}" class="btn btn-success">Пометить как завершенное</a>
+                    {% endif %}
+                    <a href="{% url 'delete-task' pk=task_list.pk task_id=item.pk %}" class="btn btn-danger">Удалить</a>
                 </div>
             </li>
         {% endfor %}
