@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from profiles.forms import RegisterUserForm, TaskListForm
 from profiles.models import ProfileCategory
-from tasks.forms import TaskForm
 from tasks.models import Task
 
 
@@ -89,20 +88,6 @@ def list_view(request, pk):
     task_list = get_object_or_404(ProfileCategory, pk=pk)
     tasks = Task.objects.filter(task_list=task_list)
     return render(request, 'tasks/task-list.html', {'task_list': task_list, 'tasks': tasks, 'lists': profile_lists})
-
-
-def create_task_view(request, pk):
-    task_list = get_object_or_404(ProfileCategory, pk=pk)
-    if request.method == "POST":
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            task = form.save(commit=False)
-            task.task_list = task_list
-            task.save()
-            return redirect('list', pk=pk)
-    else:
-        form = TaskForm()
-    return render(request, 'tasks/create-task.html', {'form': form})
 
 
 def delete_task_list_view(request, pk):
