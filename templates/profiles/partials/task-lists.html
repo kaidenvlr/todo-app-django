@@ -2,7 +2,7 @@
     <div class="tab-pane" id="tab-todo">
         {% if request.user.is_authenticated %}
             <button class=button-13" role="button">
-                <a  href="{% url 'create-list' %}">
+                <a href="{% url 'create-list' %}">
                     <i class="fa-solid fa-plus"></i>
                     Создать новый список
                 </a>
@@ -16,7 +16,7 @@
                             {{ item.name }}
                         </a>
                         <a href="{% url 'edit-list' pk=item.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="{% url 'delete-list' pk=item.pk %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <a href="{% url 'delete-list' pk=item.pk %}"><i class="fa-solid fa-trash"></i></a>
                     </li>
                 {% endfor %}
             </ul>
